@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load social_tags %}
 
 {% block head %}
 <script src="https://api-maps.yandex.ru/2.1/?apikey=f07f2390-0d8b-41dd-b580-662b3692781c&lang=ru_RU" type="text/javascript"></script>
@@ -12,6 +13,12 @@
         <div class="col-md-12 mx-auto text-center">
             <h1>Информация о компании</h1>
             <div id="map" style="width: 100%; height: 500px; margin: 0 auto;"></div>
+            <div class="social-container">
+                {% get_social_links as social_links %}
+                {% for item in social_links %}
+                    <a class="social" href="{{ item.link }}"><img src="{{ item.icon.url }}"></a>
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>
