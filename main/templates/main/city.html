@@ -1,0 +1,5 @@
+<form action="{% url 'city_selection' %}" method="post">
+    {% csrf_token %}
+    {{ choice_form }}
+    <button type="submit">Select City</button>
+</form>

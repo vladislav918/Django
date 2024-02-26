@@ -1,0 +1,87 @@
+[
+{
+  "model": "main.city",
+  "pk": 1,
+  "fields": {
+    "name": "Красноярск",
+    "latitude": 56.01291,
+    "longitude": 92.8663
+  }
+},
+{
+  "model": "main.city",
+  "pk": 2,
+  "fields": {
+    "name": "Новосибирск",
+    "latitude": 54.992733,
+    "longitude": 82.910742
+  }
+},
+{
+  "model": "main.address",
+  "pk": 3,
+  "fields": {
+    "name": "Магазин на улице \"Ястынская , 3А\"",
+    "latitude": 56.0596,
+    "longitude": 92.942289,
+    "city": 1
+  }
+},
+{
+  "model": "main.address",
+  "pk": 4,
+  "fields": {
+    "name": "Магазин на улице \"Весны, 36\"",
+    "latitude": 56.042326,
+    "longitude": 92.920745,
+    "city": 1
+  }
+},
+{
+  "model": "main.address",
+  "pk": 5,
+  "fields": {
+    "name": "Магазин на улице \"Зыряновская улица, 63\"",
+    "latitude": 55.00963,
+    "longitude": 82.941771,
+    "city": 2
+  }
+},
+{
+  "model": "main.address",
+  "pk": 6,
+  "fields": {
+    "name": "Магазин на улице \"Котовского, 12/1\"",
+    "latitude": 54.994363,
+    "longitude": 82.878393,
+    "city": 2
+  }
+},
+{
+  "model": "main.social",
+  "pk": 1,
+  "fields": {
+    "icon": "icons/free-icon-vk-social-network-logo-25684.png",
+    "name": "Вконтакте",
+    "link": "https://vk.com/ididamoy0"
+  }
+},
+{
+  "model": "main.social",
+  "pk": 2,
+  "fields": {
+    "icon": "icons/free-icon-youtube-152810.png",
+    "name": "YouTube",
+    "link": "https://www.youtube.com/"
+  }
+},
+{
+  "model": "main.social",
+  "pk": 3,
+  "fields": {
+    "icon": "icons/free-icon-github-3291695.png",
+    "name": "GitHub",
+    "link": "https://github.com/vladislav918"
+  }
+}
+]

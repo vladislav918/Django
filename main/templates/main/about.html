@@ -13,14 +13,20 @@
         <div class="col-md-12 mx-auto text-center">
             <h1>Информация о компании</h1>
             <div id="map" style="width: 100%; height: 500px; margin: 0 auto;"></div>
+            <h2>Связаться с нами</h2>
+
+            {% include 'main/contact.html' %}
+
             <div class="social-container">
                 {% get_social_links as social_links %}
                 {% for item in social_links %}
                     <a class="social" href="{{ item.link }}"><img src="{{ item.icon.url }}"></a>
                 {% endfor %}
             </div>
+            
         </div>
     </div>
+    
 </div>
 
 
@@ -29,13 +35,13 @@
     ymaps.ready(init);
     function init(){
         var myMap = new ymaps.Map("map", {
-            center: [56.01291, 92.86630],
-            zoom: 11,
+            center: [{{ cities.latitude|stringformat:"g" }}, {{ cities.longitude|stringformat:"g" }}],
+            zoom: 12,
             controls: ['zoomControl', 'typeSelector'],
         });
 
         {% for location in locations %}
-            var placemark = new ymaps.Placemark([{{ location.latitude|stringformat:"g" }} , {{ location.longitude|stringformat:"g" }}], {
+            var placemark = new ymaps.Placemark([{{ location.latitude|stringformat:"g" }}, {{ location.longitude|stringformat:"g" }}], {
                 hintContent: '{{ location.name }}',
             });
             myMap.geoObjects.add(placemark);
