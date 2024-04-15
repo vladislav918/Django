@@ -1,0 +1,42 @@
+.col-md-12 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.social-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.social {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: lightblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+}
+
+.social img {
+    width: 60%;
+    height: 60%;
+}
+
+.footer {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 80px;
+}
+
+.custom-textarea {
+    width: 100%;  /* Ширина TextArea на 100% */
+    height: 150px;  /* Высота TextArea */
+}

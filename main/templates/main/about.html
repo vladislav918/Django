@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load social_tags %}
+
+{% block head %}
+<script src="https://api-maps.yandex.ru/2.1/?apikey=f07f2390-0d8b-41dd-b580-662b3692781c&lang=ru_RU" type="text/javascript"></script>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mx-auto text-center">
+            <h1>Информация о компании</h1>
+            <div id="map" style="width: 100%; height: 500px; margin: 0 auto;"></div>
+            <h2>Связаться с нами</h2>
+
+            
+            {% if messages %}
+                <div class="container">
+                    {% for message in messages %}
+                        <div{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %} id="message-{{ forloop.counter }}">{{ message }}</div>
+                        <script>
+                            setTimeout(function() {
+                                var messageElement = document.getElementById('message-{{ forloop.counter }}');
+                                if (messageElement) {
+                                    messageElement.remove();
+                                }
+                            }, 5000); 
+                        </script>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {% include 'main/contact.html' %}
+
+            <div class="social-container">
+                {% get_social_links as social_links %}
+                {% for item in social_links %}
+                    <a class="social" href="{{ item.link }}"><img src="{{ item.icon.url }}"></a>
+                {% endfor %}
+            </div>
+            
+        </div>
+    </div>
+    
+</div>
+
+
+
+<script type="text/javascript">
+    ymaps.ready(init);
+    function init(){
+        var myMap = new ymaps.Map("map", {
+            center: [{{ cities.latitude|stringformat:"g" }}, {{ cities.longitude|stringformat:"g" }}],
+            zoom: 12,
+            controls: ['zoomControl', 'typeSelector'],
+        });
+
+        {% for location in locations %}
+            var placemark = new ymaps.Placemark([{{ location.latitude|stringformat:"g" }}, {{ location.longitude|stringformat:"g" }}], {
+                hintContent: '{{ location.name }}',
+            });
+            myMap.geoObjects.add(placemark);
+        {% endfor %}
+    }
+</script>
+{% endblock content %}
