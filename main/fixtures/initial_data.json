@@ -63,7 +63,7 @@
   "fields": {
     "icon": "icons/free-icon-vk-social-network-logo-25684.png",
     "name": "Вконтакте",
-    "link": "https://vk.com/ididamoy0"
+    "link": "https://vk.com/"
   }
 },
 {
@@ -81,7 +81,7 @@
   "fields": {
     "icon": "icons/free-icon-github-3291695.png",
     "name": "GitHub",
-    "link": "https://github.com/vladislav918"
+    "link": "https://github.com/"
   }
 }
 ]

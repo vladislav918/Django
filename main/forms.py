@@ -3,15 +3,24 @@ from .models import City, ContactModel
 
 
 class CitySelectionForm(forms.Form):
-    city = forms.ModelChoiceField(queryset=City.objects.all(), initial=City.objects.get(id=1))
-
+    city = forms.ModelChoiceField(
+        queryset=City.objects.all(),
+        to_field_name = 'name',
+        required=True,
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
+    
 
 class ContactForm(forms.ModelForm):
-    name = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control"}))
-    email = forms.EmailField(widget=forms.TextInput(attrs={"class":"form-control"}))
-    message = forms.CharField(widget=forms.Textarea(attrs={"class":"form-control"}))
+    name = forms.CharField(label='Ваше имя')
+    email = forms.EmailField(label='Ваш email')
+    message = forms.CharField(
+        widget=forms.Textarea(
+            attrs={'style': 'width: 100%; height: 150px;'}),
+        label='Сообщение'
+    )
 
 
     class Meta:
         model = ContactModel
-        fields = '__all__'
+        fields = ['name', 'email', 'message']

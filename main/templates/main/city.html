@@ -1,5 +1,6 @@
-<form action="{% url 'city_selection' %}" method="post">
+<form action="{% url 'city_selection' %}" method="post" class="d-flex"  >
     {% csrf_token %}
     {{ choice_form }}
-    <button type="submit">Select City</button>
+    <button type="submit" class="btn btn-primary">Select City</button>
 </form>
+
