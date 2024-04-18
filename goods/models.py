@@ -1,10 +1,14 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 class Category(models.Model):
     name = models.CharField(max_length=150, unique=True, verbose_name='Название')
     slug = models.SlugField(max_length=200, unique=True, blank=True, null=True, verbose_name='URL')
+
 
     class Meta:
         verbose_name = 'Категорию'
@@ -32,8 +36,19 @@ class Product(models.Model):
 
 
     def get_absolute_url(self):
-        return reverse("model_detail", kwargs={"pk": self.pk})
-    
+        return reverse("product_detail", kwargs={"slug": self.slug})
+
 
     def __str__(self):
         return self.name
+
+
+class Comment(models.Model):
+    context = models.TextField(verbose_name="Сообщение")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Пользователь")
+    product = models.ForeignKey(Product, on_delete=models.PROTECT, verbose_name="Пост")
+    created = models.DateTimeField(auto_now_add=True)
+
+
+    def __str__(self):
+        return f"{self.product} - {self.user}"
