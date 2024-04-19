@@ -1,4 +1,5 @@
-from django.views.generic import DetailView, ListView, CreateView
+from django.views.generic import DetailView, ListView
+from django.views.generic.edit import FormMixin
 
 from .models import Product
 from .forms import CommentForm
@@ -10,9 +11,12 @@ class ProductsView(ListView):
     template_name = 'goods/product_list.html'
 
 
-class ProductDetalView(DetailView):
+class ProductDetalView(FormMixin, DetailView):
     model = Product
     context_object_name = 'goods'
+    form_class = CommentForm
+    success_url = '#'
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -21,8 +25,20 @@ class ProductDetalView(DetailView):
         context['comments'] = comments
         context['form'] = CommentForm()
         return context
+    
 
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+        
 
-class CommentCreateView(CreateView):
-    form_class = CommentForm
-    template_name = "goods/comment_form.html"
+    def form_valid(self, form):
+        comment = form.save(commit=False)
+        comment.user = self.request.user
+        comment.product = self.get_object()
+        comment.save()
+        return super().form_valid(form)
