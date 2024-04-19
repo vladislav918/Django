@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, CreateView, FormView
 from django.contrib.messages.views import SuccessMessageMixin
-
+from .models import ContactModel
 from .forms import CitySelectionForm, ContactForm
 from .services import choice_city
 
@@ -23,7 +23,7 @@ class AboutView(TemplateView):
 
 class CreateContact(SuccessMessageMixin, CreateView):
     form_class = ContactForm
-    success_url = '/about'
+    success_url = '/about/'
     success_message = "Сообщение отправлено"
 
 
@@ -31,7 +31,7 @@ class CreateContact(SuccessMessageMixin, CreateView):
 class CitySelectionFormView(FormView):
     template_name = "main/city.html"
     form_class = CitySelectionForm
-    success_url = '/about'
+    success_url = '/about/'
 
     def form_valid(self, form):
         selected_city = form.cleaned_data['city']
