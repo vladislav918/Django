@@ -1,6 +1,7 @@
 {% load static %}
 {% load social_tags %}
 
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -27,7 +28,10 @@
           <a class="nav-link" href="{% url 'about' %}">О нас</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
+          <form class="d-flex" action="{% url 'search_results' %}" method="get">
+            <input class="form-control me-2" type="search" name="q" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">

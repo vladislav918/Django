@@ -3,12 +3,15 @@ from django.views.generic.edit import FormMixin
 
 from .models import Product
 from .forms import CommentForm
-from .services import get_comments
+from .services import get_comments, get_product_list
 
 
 class ProductsView(ListView):
     model = Product
     template_name = 'goods/product_list.html'
+
+    def get_queryset(self):
+        return get_product_list(self.request)
 
 
 class ProductDetalView(FormMixin, DetailView):

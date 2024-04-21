@@ -9,6 +9,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'debug_toolbar',
     'crispy_bootstrap5', 
+    'dynamic_breadcrumbs',
 
     'main.apps.MainConfig',
     'goods.apps.GoodsConfig',
