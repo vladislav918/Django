@@ -2,8 +2,6 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 
-User = get_user_model()
-
 
 class Category(models.Model):
     name = models.CharField(max_length=150, unique=True, verbose_name='Название')
@@ -27,6 +25,7 @@ class Product(models.Model):
     discount = models.DecimalField(default=0.00, max_digits=4, decimal_places=2, verbose_name='Скидка в %')
     quantity = models.PositiveIntegerField(default=0, verbose_name='Количество')
     category = models.ForeignKey(to=Category, on_delete=models.CASCADE, verbose_name='Категория')
+    user = models.ForeignKey(get_user_model(),on_delete=models.CASCADE, verbose_name='Автор')
 
 
     class Meta:
@@ -45,7 +44,7 @@ class Product(models.Model):
 
 class Comment(models.Model):
     context = models.TextField(verbose_name="Сообщение")
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Пользователь")
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, verbose_name="Пользователь")
     product = models.ForeignKey(Product, on_delete=models.PROTECT, verbose_name="Пост")
     created = models.DateTimeField(auto_now_add=True)
 
