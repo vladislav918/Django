@@ -27,12 +27,19 @@ def get_comments(product, request):
 
 def get_product_list(request):
     query = request.GET.get('q')
+    category_id = request.GET.get('category')
+
+    products = Product.objects.filter(available=True)
+
     if query:
-        return Product.objects.filter(
+        products = products.filter(
             Q(name__icontains=query) | 
             Q(description__icontains=query) | 
             Q(article_number__exact=query)
         )
-    else:
-        return Product.objects.all()
+
+    if category_id:
+        products = products.filter(category_id=category_id)
+
+    return products
 

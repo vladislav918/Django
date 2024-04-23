@@ -1,7 +1,7 @@
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import FormMixin
 
-from .models import Product
+from .models import Product, Category
 from .forms import CommentForm
 from .services import get_comments, get_product_list
 
@@ -12,6 +12,13 @@ class ProductsView(ListView):
 
     def get_queryset(self):
         return get_product_list(self.request)
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        categories = Category.objects.all()
+        context['categories'] = categories
+        return context
 
 
 class ProductDetalView(FormMixin, DetailView):

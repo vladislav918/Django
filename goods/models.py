@@ -47,6 +47,9 @@ class Product(models.Model):
         null=True,
         verbose_name='Описание'
     )
+    available = models.BooleanField(
+        default=True
+    )
     image = models.ImageField(
         upload_to='goods_images',
         blank=True,
@@ -119,3 +122,4 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"{self.product} - {self.user}"
+
