@@ -10,6 +10,7 @@ class ProductsView(ListView):
     model = Product
     template_name = 'goods/product_list.html'
 
+
     def get_queryset(self):
         return get_product_list(self.request)
 

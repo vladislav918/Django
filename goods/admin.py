@@ -1,11 +1,11 @@
 from django.contrib import admin
 from .models import Product, Category, Comment
-# Register your models here.
+
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ['name']}
-    readonly_fields=('article_number',)
+    readonly_fields= ('article_number','average_rating')
 
 
 @admin.register(Category)
