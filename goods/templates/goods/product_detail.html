@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+
+{% block content%}
+<div class="row">
+    {% if breadcrumbs %}
+        <div class="container">
+            {% include "dynamic_breadcrumbs/breadcrumbs.html" with breadcrumbs=breadcrumbs%}
+        </div>
+    {% endif %}
+    <div class="col-md-6 mb-3">
+        <img src="{{ goods.image.url }}" style="width: 100%; height: auto;" class="card-img-top" alt="Product Image">
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card h-100 d-flex flex-column">
+            <div class="card-body">
+                <h5 class="card-title">{{ goods.name }}</h5>
+                <small>id {{ goods.article_number }} </small>
+                <p class="card-text">{{ goods.description }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="card d-flex flex-column">
+            <div class="card-body">
+                <p class="card-text">${{ goods.price }}</p>
+                <a href="{{ goods.get_absolute_url }}" class="btn btn-primary mt-auto">Buy Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'goods/comment_list.html' %}
+
+{% include 'goods/comment_form.html' %}
+
+{% endblock %}

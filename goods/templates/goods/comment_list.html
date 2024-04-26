@@ -1,0 +1,27 @@
+<h2>Отзывы</h2>
+<div class="btn-group" role="group">
+    <button id="sortByCreated_at" class="btn btn-primary">Cортировать по дате</button>
+</div>
+
+<div class="card-body col-md-6">
+    {% for comment in comments %}
+        <div class="d-flex align-items-start mb-3">
+            <img class="rounded-circle shadow-1-strong me-3" src="#" alt="avatar" width="65" height="65" />
+            <div class="flex-grow-1 flex-shrink-1">
+                <div>
+                    <p class="mb-1">{{ comment.user}} <span class="small">- {{ comment.created}}</span></p>
+                    <p class="small mb-0">{{ comment.context }}</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<script>
+    document.getElementById('sortByCreated_at').addEventListener('click', function() {
+        var url = new URL(window.location.href);
+        url.searchParams.set('sort_by', 'created_at');
+        url.searchParams.set('sort_dir', url.searchParams.get('sort_dir') === 'asc' ? 'desc' : 'asc');
+        window.location.href = url.toString();
+    });
+</script>
