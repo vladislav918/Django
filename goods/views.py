@@ -5,6 +5,7 @@ from .models import Product, Category
 from .forms import CommentForm
 from .services import get_comments, get_product_list
 
+from cart.forms import CartAddProductForm
 
 class ProductsView(ListView):
     model = Product
@@ -35,6 +36,7 @@ class ProductDetalView(FormMixin, DetailView):
         comments = get_comments(product, self.request)
         context['comments'] = comments
         context['form'] = CommentForm()
+        context['cart_product_form'] = CartAddProductForm()
         return context
     
 
