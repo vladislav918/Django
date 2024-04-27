@@ -7,6 +7,7 @@ from .services import get_comments, get_product_list
 
 from cart.forms import CartAddProductForm
 
+
 class ProductsView(ListView):
     model = Product
     template_name = 'goods/product_list.html'

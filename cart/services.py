@@ -66,3 +66,8 @@ def remove_goods(request, product):
 def get_len_cart(request):
     cart = create_or_get_session(request)
     return len(cart)
+
+
+def clear_cart(request):
+    del request.session[settings.CART_SESSION_ID]
+    request.session.modified = True

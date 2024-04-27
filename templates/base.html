@@ -56,8 +56,29 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href={% url 'register' %}><span class="glyphicon glyphicon-user"></span>Регистрация</a></li>
-        <li><a href={% url 'login' %}><span class="glyphicon glyphicon-log-in"></span>Вход</a></li>
+        {% if user.is_authenticated %}
+              <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Profile
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li>
+                  <a class="dropdown-item" href="">Profile</a>
+              </li>
+              <li>
+                    <a class="dropdown-item" href="{% url 'password_reset' %}">Reser Password</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="{% url 'logout' %}">Exit</a>
+                </li>
+                </ul>
+            </li>
+        {% else %}
+            <li class="nav-item">
+                <a class="nav-link active" href="{% url 'login' %}">Sign in <i class="fa-solid fa-user-secret"></i></a>
+            </li>
+        {% endif %}
       </ul>
     </div>
   </nav>

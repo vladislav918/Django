@@ -24,7 +24,7 @@ class CartDetailView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
+        
         context['goods'] = get_goods_list(self.request)
 
         return context
