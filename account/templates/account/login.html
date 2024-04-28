@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
 
 {% block content %}
 <h1>Авторизация</h1>
@@ -5,15 +8,10 @@
 <form method="post">
     {% csrf_token %}
     <div class="form-error">{{ form.non_field_errors }}</div>
- 
-    {% for f in form %}
-        <p ><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
-        <div class="form-error">{{ f.errors }}</div>
-        <input type="hidden" name="next"  />
-
-    {% endfor %}
+    {{ form|crispy }}
 
     <p ><button type="submit">Войти</button></p>
 </form>
- 
+Нет аккаунта? <a style="color: black;" class="link active" href="{% url 'register' %}">Создать</a> 
+Забыли пароль? <a style="color: black;" class="link active" href="{% url 'password_reset' %}">Восстановить</a> 
 {% endblock %}

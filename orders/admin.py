@@ -16,4 +16,4 @@ class OrderAdmin(admin.ModelAdmin):
         'created', 'updated',
     ]
     list_filter = ['paid', 'created', 'updated']
-    inlines = [OrderItemInline]# Register your models here.
+    inlines = [OrderItemInline]

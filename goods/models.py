@@ -100,9 +100,6 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse("product_detail", kwargs={"slug": self.slug})
 
-    @property
-    def average_rating(self):
-        return self.rating_set.all().aggregate(Avg('rating'))['rating__avg']
     
     def __str__(self):
         return self.name
@@ -127,4 +124,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"{self.product} - {self.user}"
-

@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section style="background-color: #eee;">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card mb-4">
+            <div class="card-body text-center">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                class="rounded-circle img-fluid" style="width: 150px;">
+              <h5 class="my-3">{{ user.username }}</h5>
+            </div>
+          </div>
+          <div class="card mb-4 mb-lg-0">
+            <div class="card-body p-0">
+              <ul class="list-group list-group-flush rounded-3">
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                  <i class="fas fa-globe fa-lg text-warning"></i>
+                  <p class="mb-0"><a href="{% url 'orders_list' %}">Заказы</a></p>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                    <i class="fab fa-github fa-lg" style="color: #333333;"></i>
+                    <p class="mb-0"><a href="{% url 'user_update' username=request.user.username %}">Обновить профиль</a></p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="row">
+                {% for order in object_list %}
+                    {{ order.created }}
+                    {% for item in order.items.all %}
+                            <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div class="d-flex flex-row align-items-center">
+                                <div>
+                                    <img
+                                    src="{{ item.product.image.url }}"
+                                    class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                </div>
+                                <div class="ms-3">
+                                    <h5>{{ item.product.name }}</h5>
+            
+                                </div>
+                                </div>
+                                <div class="d-flex flex-row align-items-center">
+                                <div style="width: 80px;">
+                                    <h5 class="mb-0">{{ item.get_cost }}</h5>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                        {% endfor %}
+                <hr>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
