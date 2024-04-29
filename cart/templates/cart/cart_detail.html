@@ -64,7 +64,11 @@
           {% endif %}
         </div>
       </div>
-
+      <form action="{% url 'coupon_apply' %}" method="post">
+        {{ coupon_apply_form }}
+        <input type="submit" value="Apply">
+        {% csrf_token %}
+      </form>
     </div>
   </section>
 {% endblock content %}

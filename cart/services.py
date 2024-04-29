@@ -3,6 +3,9 @@ from django.conf import settings
 from goods.models import Product
 
 
+from coupons.models import Coupon
+
+
 def create_or_get_session(request):
     session = request.session
 
@@ -31,11 +34,18 @@ def get_goods_list(request):
     product_ids = cart.keys()
     products = Product.objects.filter(id__in=product_ids)
 
+    coupon_id = request.session.get('coupon_id')
+    if coupon_id:
+        coupon = Coupon.objects.get(id=coupon_id)
+        discount = coupon.discount
+    else:
+        discount = 0
+
     products_data = []
     for product in products:
         product_id = str(product.id)
         quantity = cart[product_id]['quantity']
-        price = product.price
+        price = product.price - (product.price * discount) / 100
         img = product.image
         total_price = quantity * price
 

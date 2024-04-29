@@ -3,9 +3,11 @@ from django.views.generic import View, TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from goods.models import Product
+from coupons.forms import CouponApplyForm
 
 from .forms import CartAddProductForm
 from .services import add_to_cart, get_goods_list, remove_goods
+
 
 
 class CartAddView(LoginRequiredMixin, View):
@@ -25,9 +27,12 @@ class CartDetailView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        
+        coupon_apply_form = CouponApplyForm()
         context['goods'] = get_goods_list(self.request)
-
+        context['coupon_apply_form'] = coupon_apply_form
+        
+        for key, value in self.request.session.items():
+            print('{} => {}'.format(key, value))
         return context
 
 
