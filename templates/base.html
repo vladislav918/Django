@@ -64,10 +64,10 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <li>
-                  <a class="dropdown-item" href="">Profile</a>
+                  <a class="dropdown-item" href="{% url 'user_profile' username=request.user.username %}">Profile</a>
               </li>
               <li>
-                    <a class="dropdown-item" href="{% url 'password_reset' %}">Reser Password</a>
+                    <a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a>
                 </li>
                 <li>
                     <a class="dropdown-item" href="{% url 'logout' %}">Exit</a>

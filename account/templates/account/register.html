@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 <h1>Регистрация</h1>
@@ -7,7 +8,7 @@
     {% csrf_token %}
     <input type="hidden" name="next"/>
     <div class="form-error">{{ form.non_field_errors }}</div>
-    {{ form.as_p}}
+    {{ form|crispy }}
 
     <p ><button type="submit">Регистрация</button></p>
 </form>

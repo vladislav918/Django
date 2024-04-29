@@ -13,8 +13,6 @@
         <h1>Checkout</h1>
         <div class="order-info">  
             <ul class="list-group">
-{{  goods }}
-
                 {% for product in goods %}
                   <li class="list-group-item d-flex justify-content-between align-items-center">
                     {{ product.name }}
@@ -37,6 +35,10 @@
       </div>
     </div>
   </div>
+  <form action="{% url 'process' %}" method="post">
+    <input value="Place order" type="submit" >
+    {% csrf_token %}
+  </form>
 
  
 {% endblock %}

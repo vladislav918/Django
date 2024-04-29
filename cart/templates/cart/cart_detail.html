@@ -54,16 +54,17 @@
                             </div>
                         </div>
                     {% endfor %}
+
                 </div>
               </div>
             </div>
           </div>
-
+          {% if cart > 0 %}
+            <a href="{% url 'order_create' %}" class="btn btn-dark btn-block btn-lg">Купить</a>
+          {% endif %}
         </div>
       </div>
 
     </div>
   </section>
-  <a href="{% url 'order_create' %}" class="btn btn-dark btn-block btn-lg">
-
 {% endblock content %}

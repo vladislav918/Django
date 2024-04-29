@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import View, TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from goods.models import Product
 
@@ -7,7 +8,7 @@ from .forms import CartAddProductForm
 from .services import add_to_cart, get_goods_list, remove_goods
 
 
-class CartAddView(View):
+class CartAddView(LoginRequiredMixin, View):
 
     def post(self, request, product_id):
         product = get_object_or_404(Product, id=product_id)
@@ -19,7 +20,7 @@ class CartAddView(View):
         return redirect('/')
 
 
-class CartDetailView(TemplateView):
+class CartDetailView(LoginRequiredMixin, TemplateView):
     template_name = 'cart/cart_detail.html'
 
     def get_context_data(self, **kwargs):
@@ -30,7 +31,7 @@ class CartDetailView(TemplateView):
         return context
 
 
-class CartRemoveView(View):
+class CartRemoveView(LoginRequiredMixin, View):
 
     def post(self, request, product_id):
         remove_goods(request, product_id)
