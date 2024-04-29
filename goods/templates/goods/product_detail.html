@@ -29,6 +29,11 @@
         </div>
     </div>
 </div>
+<form action="{% url 'cart_add' goods.id %}" method="post">
+    {{ cart_product_form }}
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger text-uppercase mr-2 px-4">Add to cart</button> 
+  </form>
 
 {% include 'goods/comment_list.html' %}
 

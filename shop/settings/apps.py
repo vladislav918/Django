@@ -14,6 +14,8 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'goods.apps.GoodsConfig',
     'account.apps.AccountConfig',
+    'cart.apps.CartConfig',
+    'orders.apps.OrdersConfig',
 ]
 
 INTERNAL_IPS = [

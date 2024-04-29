@@ -7,9 +7,25 @@
     <head>
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
       <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+      <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
         {% block head %}
         {% endblock head %}
-    </head>
+        <style>
+          .badge:after{
+              content:attr(value);
+              font-size:12px;
+              color: #fff;
+              background: red;
+              border-radius:50%;
+              padding: 0 5px;
+              position:relative;
+              left:-8px;
+              top:-10px;
+              opacity:0.9;
+          }
+      
+      </style>
+    </head> 
 <body>
   <!-- navbar -->
   <nav class="navbar fixed-top navbar-expand-sm bg-dark navbar-dark">
@@ -28,6 +44,9 @@
           <a class="nav-link" href="{% url 'about' %}">О нас</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link fa badge fa-lg" href="{% url 'cart_detail' %} "value={{cart}}>&#xf290;</a>
+        </li>
+        <li class="nav-item">
           <form class="d-flex" action="{% url 'search_results' %}" method="get">
             {% block category %}
             {% endblock %}
@@ -37,8 +56,29 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href={% url 'register' %}><span class="glyphicon glyphicon-user"></span>Регистрация</a></li>
-        <li><a href={% url 'login' %}><span class="glyphicon glyphicon-log-in"></span>Вход</a></li>
+        {% if user.is_authenticated %}
+              <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Profile
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li>
+                  <a class="dropdown-item" href="">Profile</a>
+              </li>
+              <li>
+                    <a class="dropdown-item" href="{% url 'password_reset' %}">Reser Password</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="{% url 'logout' %}">Exit</a>
+                </li>
+                </ul>
+            </li>
+        {% else %}
+            <li class="nav-item">
+                <a class="nav-link active" href="{% url 'login' %}">Sign in <i class="fa-solid fa-user-secret"></i></a>
+            </li>
+        {% endif %}
       </ul>
     </div>
   </nav>
