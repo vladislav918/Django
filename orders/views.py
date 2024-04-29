@@ -1,5 +1,7 @@
 from django.views.generic import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect
+from django.urls import reverse
 
 from .models import OrderItem
 from .forms import OrderCreateForm
@@ -37,4 +39,4 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         create_order(self.request, form)
 
-        return super().form_valid(form)
+        return redirect(reverse('process'))

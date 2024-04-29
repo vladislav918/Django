@@ -24,3 +24,4 @@ def create_order(request, form):
     request.session['order_id'] = order.id
 
     clear_cart(request)
+
