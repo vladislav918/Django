@@ -9,7 +9,7 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 def get_checkout_session_stipe(request):
     order_id = request.session.get('order_id', None)
     order = get_object_or_404(Order, id=order_id)
-    domain = "http://127.0.0.1:8000"
+    domain = "http://0.0.0.0:8000"
     line_items = []
     for item in order.items.all():
         line_items.append({

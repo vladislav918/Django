@@ -7,6 +7,11 @@ from django.http import HttpResponse
 from orders.models import Order
 
 
+"""
+stripe listen --forward-to 0.0.0.0:8000/payment/webhook/
+stripe trigger checkout.session.completed
+"""
+
 @csrf_exempt
 def stripe_webhook(request):
     payload = request.body
