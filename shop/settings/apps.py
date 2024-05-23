@@ -5,6 +5,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 
     'crispy_forms',
     'debug_toolbar',
@@ -13,7 +19,7 @@ INSTALLED_APPS = [
 
     'main.apps.MainConfig',
     'goods.apps.GoodsConfig',
-    'account.apps.AccountConfig',
+    'accounts.apps.AccountConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
     'payment.apps.PaymentConfig',
@@ -21,5 +27,5 @@ INSTALLED_APPS = [
 ]
 
 INTERNAL_IPS = [
-    "127.0.0.1",
+    '127.0.0.1',
 ]

@@ -4,7 +4,7 @@ from django.contrib.auth.views import LoginView, PasswordChangeView
 from django.views.generic import CreateView, DetailView, ListView,UpdateView
 from django.shortcuts import get_object_or_404
 
-from account.models import CustomUser
+from accounts.models import CustomUser
 
 from .forms import LoginUserForm, RegisterUserForm, UserPasswordChangeForm
 
@@ -13,24 +13,24 @@ from orders.models import Order
 
 class LoginUser(LoginView):
     form_class = LoginUserForm
-    template_name = 'account/login.html'
+    template_name = 'accounts/login.html'
 
 
 class RegisterUser(CreateView):
     form_class = RegisterUserForm
-    template_name = 'account/register.html'
+    template_name = 'accounts/register.html'
     success_url = reverse_lazy('login')
 
 
 class UserPasswordChange(PasswordChangeView):
     form_class = UserPasswordChangeForm
     success_url = reverse_lazy('password_change_done')
-    template_name = 'account/password_change_form.html'
+    template_name = 'accounts/password_change_form.html'
 
 
 class UserProfileDetailView(DetailView):
     model = CustomUser
-    template_name = 'account/user_profile.html'
+    template_name = 'accounts/user_profile.html'
     context_object_name = 'user'
 
     def get_object(self, queryset=None):
@@ -40,7 +40,7 @@ class UserProfileDetailView(DetailView):
 
 class OrderList(ListView):
     model = Order
-    template_name = 'account/user_profile_order_list.html'
+    template_name = 'accounts/user_profile_order_list.html'
 
 
     def get_queryset(self):
@@ -50,7 +50,7 @@ class OrderList(ListView):
 class UserProfileUpdateView(UpdateView):
     model = CustomUser
     fields = ['first_name', 'last_name']
-    template_name = 'account/user_update_form.html'
+    template_name = 'accounts/user_update_form.html'
     success_url = '/'
 
     def get_object(self, queryset=None):

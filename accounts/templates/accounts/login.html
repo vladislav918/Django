@@ -1,6 +1,6 @@
 {% extends "base.html" %}
+{% load socialaccount %}
 {% load crispy_forms_tags %}
-
 
 {% block content %}
 <h1>Авторизация</h1>
@@ -12,6 +12,8 @@
 
     <p ><button type="submit">Войти</button></p>
 </form>
+<a href="{% provider_login_url "google" method="oauth2" %}"> Войти через Google </a>
+
 Нет аккаунта? <a style="color: black;" class="link active" href="{% url 'register' %}">Создать</a> 
 Забыли пароль? <a style="color: black;" class="link active" href="{% url 'password_reset' %}">Восстановить</a> 
 {% endblock %}

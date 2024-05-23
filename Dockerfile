@@ -9,7 +9,9 @@ WORKDIR /store
 COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
-COPY . .
+COPY /goods/fixtures/initial_data.json /main/app/fixtures/initial_data.json
+   
+
    
 
    
